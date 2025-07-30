@@ -1,23 +1,25 @@
 
 "use client";
 import React, { Suspense } from "react";
-import { useSearchParams } from "next/navigation";
+import { useChat } from "../../context/ChatContext";
 
 const ChatMessage = React.lazy(
   () =>
     Promise.resolve({
-      default: ({ message }: { message: string }) => (
-        <div className="p-10 bonbon-regular text-3xl">{message}</div>
+      default: ({ message, reply }: { message: string; reply: string }) => (
+        <div className="p-10 bonbon-regular text-3xl">
+          <div><b>You:</b> {message}</div>
+          <div className="mt-6"><b>Bajaj Bot:</b> {reply}</div>
+        </div>
       ),
     })
 );
 
 const Page = () => {
-  const searchParams = useSearchParams();
-  const fullMessage = searchParams.get("msg") || "";
+  const { userMsg, geminiReply } = useChat();
   return (
     <Suspense fallback={<div>Loading chat...</div>}>
-      <ChatMessage message={fullMessage} />
+      <ChatMessage message={userMsg} reply={geminiReply} />
     </Suspense>
   );
 };
