@@ -1,26 +1,69 @@
 @import "tailwindcss";
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bonbon&display=swap');
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-background: #0A0A0A;        /* Dark base */
+  --color-surface: #313045;           /* Slightly lighter surface/card */
+  --color-border: #1F1F1F;            /* Subtle border (less contrasty) */
+  --color-primary: #292840;           /* Soft Indigo for CTA */
+  --color-accent: #3B82F6;            /* Blue accent (buttons, badges) */
+  --color-text: #ffffff;              /* Main readable text */
+  --color-text-muted: #65758c;        /* Dimmed secondary text */
+  --color-success: #22C55E;           /* Green for success states */
+  --color-error: #EF4444;             /* Red for errors */
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Bonbon', cursive; /* Decorative font for headings */
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+}
+
+
+.bonbon-regular {
+  font-family: "Bonbon", cursive;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.text-glow {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4),
+               0 0 6px rgba(99, 102, 241, 0.5),
+               0 0 10px rgba(59, 130, 246, 0.3);
+}
+/* Optional utility helpers */
+.bg-surface {
+  background-color: var(--color-surface);
+}
+
+.border-default {
+  border-color: var(--color-border);
+}
+
+.text-muted {
+  color: var(--color-text-muted);
+}
+
+.text-accent {
+  color: var(--color-accent);
+}
+
+.bg-primary {
+  background-color: var(--color-primary);
+}
+
+.bg-accent {
+  background-color: var(--color-accent);
+}
+
+.text-success {
+  color: var(--color-success);
+}
+
+.text-error {
+  color: var(--color-error);
 }
