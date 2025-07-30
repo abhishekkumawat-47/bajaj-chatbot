@@ -3,7 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bonbon&display=swap');
 :root {
-  --color-background: #0A0A0A;        /* Dark base */
+  --color-background: #292840;        /* Dark base */
   --color-surface: #313045;           /* Slightly lighter surface/card */
   --color-border: #1F1F1F;            /* Subtle border (less contrasty) */
   --color-primary: #292840;           /* Soft Indigo for CTA */

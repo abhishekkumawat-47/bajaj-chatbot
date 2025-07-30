@@ -25,7 +25,7 @@ Documents:
 ${context}
 
 Instructions:
-- Give a short answer (2–3 lines max).
+- Give a strictly short answer (2–3 lines max).
 - Use simple, conversational language.
 - Don't copy the document word-for-word.
 - If unsure, say "I'm not sure based on the provided documents."
@@ -48,8 +48,8 @@ User Question: ${message}
 });
 
     const data = await response.json();
-    console.log('Gemini API response:', JSON.stringify(data));
-    const answer = data.candidates?.[0]?.content?.parts?.[0]?.text ?? "No response from Gemini.";
+    // console.log('Gemini API response:', JSON.stringify(data));
+    const answer = data.candidates?.[0]?.content?.parts?.[0]?.text ?? "I'm not sure based on the provided documents.";
     return NextResponse.json({ reply: answer });
   } catch (err) {
     console.error('Gemini API error:', err);
