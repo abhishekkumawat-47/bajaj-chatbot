@@ -52,12 +52,10 @@ const Page = () => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const chatContainerRef = useRef<HTMLDivElement>(null);
 
-  // Auto-scroll to bottom when new messages arrive
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [chatHistory, loading]);
 
-  // On mount, if last message has no Gemini reply, fetch it
   useEffect(() => {
     if (
       chatHistory.length > 0 &&
@@ -87,7 +85,6 @@ const Page = () => {
         setLoading(false);
       })();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleSend = async () => {
@@ -132,7 +129,6 @@ const Page = () => {
 
   return (
     <div className="h-screen bg-[color:var(--color-background)] bg-[radial-gradient(#313045_2px,var(--color-background)_2px)] bg-[size:20px_20px] flex flex-col">
-      {/* Header */}
       <div className="bg-[color:var(--color-surface)] border-b-2 border-[color:var(--color-text-muted)] p-4 sticky top-0 z-10">
         <h1 className="text-2xl sm:text-3xl bonbon-regular font-bold text-glow text-[color:var(--color-text)] text-center">
           Bajaj Bot
@@ -142,7 +138,6 @@ const Page = () => {
         </p>
       </div>
 
-      {/* Chat Messages Container */}
       <div 
         ref={chatContainerRef}
         className="flex-1 overflow-y-auto p-4 pb-20"
@@ -153,7 +148,6 @@ const Page = () => {
         }}
       >
         <div className="max-w-4xl mx-auto">
-          {/* Welcome Message */}
           {(!chatHistory || chatHistory.length === 0) && (
             <div className="text-center py-20">
               <div className="text-6xl mb-4">🤖</div>
@@ -166,7 +160,6 @@ const Page = () => {
             </div>
           )}
 
-          {/* Chat Messages */}
           <Suspense fallback={
             <div className="flex justify-center items-center py-8">
               <div className="text-[color:var(--color-text-muted)] bonbon-regular">Loading chat...</div>
@@ -179,13 +172,11 @@ const Page = () => {
               replyTimestamp?: Date;
             }, index: number) => (
               <div key={index}>
-                {/* User Message */}
                 <ChatMessage 
                   message={chat.userMsg} 
                   isUser={true}
                   timestamp={chat.timestamp || new Date()}
                 />
-                {/* Bot Reply */}
                 {chat.geminiReply && (
                   <ChatMessage 
                     message={chat.geminiReply} 
@@ -195,15 +186,12 @@ const Page = () => {
                 )}
               </div>
             ))}
-            {/* Typing Indicator */}
             {loading && <TypingIndicator />}
           </Suspense>
-          {/* Scroll anchor */}
           <div ref={messagesEndRef} />
         </div>
       </div>
 
-      {/* Input Area - Fixed at bottom */}
       <div className="fixed bottom-0 left-0 right-0 bg-[color:var(--color-surface)] border-t-2 border-[color:var(--color-text-muted)] p-4">
         <div className="max-w-4xl mx-auto flex items-center gap-2">
           <textarea

@@ -29,7 +29,7 @@ export default function Home() {
     setLoading(true);
     const userMessage = input.trim();
     const userTimestamp = new Date();
-    // Set chat history with user message only, Gemini reply will be fetched on chat page
+    
     setChatHistory([
       { userMsg: userMessage, timestamp: userTimestamp }
     ]);

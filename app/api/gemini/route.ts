@@ -6,11 +6,8 @@ export async function POST(req: NextRequest) {
   const body = await req.json();
   const { message } = body;
 
-
-  // Read all files from the docs folder
   const docsDir = path.join(process.cwd(), 'docs');
   const fileNames = fs.readdirSync(docsDir);
-  // Only include text-based files
   const allowedExts = ['.txt', '.md', '.json'];
   const docs = fileNames
     .filter((file) => allowedExts.includes(path.extname(file).toLowerCase()))
