@@ -11,7 +11,7 @@ from dotenv import load_dotenv
 import os
 
 load_dotenv()
-os.environ["GOOGLE_API_KEY"] = os.getenv("GOOGLE_API_KEY3")
+os.environ["GOOGLE_API_KEY"] = os.getenv("GOOGLE_API_KEY2")
 
 system_prompt = ChatPromptTemplate.from_messages([
     ("system", """
@@ -72,12 +72,18 @@ def retriever_from_docs(docs):
         )
     return qa_chain
 
+static_qa_chain = retriever_from_docs(docs)
+
 @tool
 def ask_query(query: str,user_docs=None) -> dict:
     """Search documents and return a structured decision based on the policy."""
-    combined_docs = docs + user_docs if user_docs else docs
-    qa_chain = retriever_from_docs(combined_docs)
-    response = qa_chain.invoke({"query": query})
+    if user_docs:
+        combined_docs = docs + user_docs
+        qa_chain = retriever_from_docs(combined_docs)
+        response = qa_chain.invoke({"query": query})
+    else:
+        response = static_qa_chain.invoke({"query": query})
+
     return response
 @tool
 def general_chat(message: str) -> str:
