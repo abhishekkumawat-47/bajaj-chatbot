@@ -11,7 +11,7 @@ from dotenv import load_dotenv
 import os
 
 load_dotenv()
-os.environ["GOOGLE_API_KEY"] = os.getenv("GOOGLE_API_KEY2")
+os.environ["GOOGLE_API_KEY"] = os.getenv("GOOGLE_API_KEY3")
 
 system_prompt = ChatPromptTemplate.from_messages([
     ("system", """
@@ -30,6 +30,7 @@ Guidelines:
 - If required info is missing, return `"decision": "needs_clarification"` and explain what’s needed.
 - If no relevant clause is found, say so and show the closest matching content.
 - Be explainable, traceable, and cautious. Don’t hallucinate.
+- Give concise answers, don't give long answers unless required.
 
 Only handle insurance/policy/legal document queries. For unrelated questions, redirect via the general_chat tool.
     """),
